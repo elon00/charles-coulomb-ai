@@ -1,0 +1,62 @@
+{
+  "mcpServers": {
+    "charles-coulomb-ai": {
+      "command": "cargo",
+      "args": [
+        "run",
+        "--release",
+        "--quiet"
+      ],
+      "env": {
+        "RUST_LOG": "info",
+        "TITAN_PROTOCOL": "COULOMB",
+        "TARGET_CHAIN": "Sui",
+        "FIPS_203_LEVEL": "ML-KEM-768",
+        "FIPS_204_LEVEL": "ML-DSA-65"
+      },
+      "tools": [
+        {
+          "name": "calculate_coulomb_electrostatic_force",
+          "description": "Applies Coulomb's law F = k_e (q1 q2) / r^2 between point charges in vacuum",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "charge1_coulombs": {
+                "type": "number"
+              },
+              "charge2_coulombs": {
+                "type": "number"
+              },
+              "distance_m": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "charge1_coulombs",
+              "charge2_coulombs",
+              "distance_m"
+            ]
+          }
+        },
+        {
+          "name": "calibrate_torsion_wire_rigidity",
+          "description": "Measures micro-Newton torsional restoration torque in silk/metallic suspension filaments",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "wire_diameter_mm": {
+                "type": "number"
+              },
+              "torsion_angle_deg": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "wire_diameter_mm"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
